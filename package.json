@@ -1,5 +1,5 @@
 {
-  "name": "camo",
+  "name": "lemaf.camo",
   "version": "0.13.0",
   "description": "A class-based ES6 ODM for Mongo-like databases.",
   "author": {
@@ -22,10 +22,10 @@
     "query",
     "db"
   ],
-  "homepage": "https://github.com/scottwrobinson/camo",
+  "homepage": "https://github.com/Lemaf/camo",
   "repository": {
     "type": "git",
-    "url": "git@github.com:scottwrobinson/camo.git"
+    "url": "git@github.com:Lemaf/camo.git"
   },
   "license": "MIT",
   "scripts": {
