@@ -264,6 +264,63 @@ describe('Client', function() {
                 expect(u.address.city).to.be.an.instanceof(City);
             }).then(done, done);
         });
+
+        it('should return only the fields specified in the projection', function(done) {
+
+            let city = City.create({
+                name: 'Cityville',
+                county: 'County'
+            });
+
+            let address = Address.create({
+                street: '123 Fake St.',
+                city: city,
+                zipCode: 12345
+            });
+
+            let germanShepherd = Breed.create({
+                name: 'German Shepherd'
+            });
+
+            let dog = Pet.create({
+                type: 'dog',
+                name: 'Fido',
+                breed: germanShepherd
+            });
+
+            let user = User.create({
+                firstName: 'Billy',
+                lastName: 'Bob',
+                pet: dog,
+                address: address
+            });
+
+            Promise.all([city.save(), germanShepherd.save()]).then(function() {
+                validateId(city);
+                validateId(germanShepherd);
+                return Promise.all([address.save(), dog.save()]).then(function() {
+                    validateId(address);
+                    validateId(dog);
+                    return user.save();
+                })
+            }).then(function() {
+                validateId(user);
+                return User.findOne({_id: user._id}, {projection: {firstName: 1, pet: {type: 1, breed: 1}}});
+            }).then(function(u) {
+                expect(u.pet).to.be.ok;
+                expect(u.pet).to.be.an.instanceof(Pet);
+                expect(u.firstName).to.be.ok;
+
+                // The fields below where not passed in the 'projection' object.
+                expect(u.lastName).not.to.be.ok;
+                expect(u.address).not.to.be.ok;
+
+                // It should work with "deep" projection configuration as well
+                expect(u.pet.name).not.to.be.ok;
+                expect(isNativeId(u.pet.breed)).to.be.true;
+
+            }).then(done, done);
+        });
     });
 
     describe('#findOneAndUpdate()', function() {
