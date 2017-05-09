@@ -282,6 +282,10 @@ Dog.findOne({ name: 'Lassie' }).then(function(l) {
   - `Person.findOne({name: 'Billy'}, {populate: {'address':true, 'spouse':true}})` populates only 'address' and 'spouse' in `Person` object, and all its references.
   - `Person.findOne({name: 'Billy'}, {populate: {'address': {'city':true}}})` populates only 'address' in `Person` object, and 'city' in `Address` object, and all of the `City` references.
   - `Person.findOne({name: 'Billy'}, {populate: {'address': ['city']}})` populates only 'address' in `Person` object, and 'city' in `Address` object, but none of the `City` references.
+- `projection`: Object that specifies which fields should be returned. A __1__ means the field data will be loaded, a __0__ means it won't. Warning: 1's and 0's cannot be mixed. Refer to MongoDB\NeDB _projection_ for more information.
+  - `Person.findOne({name: 'Billy'}, {projection: {'spouse': 1}})` loads only the data for _Person.spouse_. All the other fields will be undefined.
+  - `Person.findOne({name: 'Billy'}, {projection: {'spouse': 0}})` loads all the fields in `Person` __but__ `spouse`.
+  - `Person.findOne({name: 'Billy'}, {projection: {'address': {'city': 1, 'street': 1}}, 'spouse': 1})` loads only `address.city` and `address.street`, as well as all the data from `spouse`.
 
 `.find()` currently accepts the following options:
 
