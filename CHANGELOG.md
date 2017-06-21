@@ -1,3 +1,7 @@
+## 0.13.1 (2017-06-21)
+Bugfixes:
+ - Fixed issue that prevent populate if some instance has undefined references.
+
 ## 0.13.0 (2017-04-13)
 Features:
  - Added support for deep populate option ([#13](https://github.com/scottwrobinson/camo/issues/13))
