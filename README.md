@@ -338,6 +338,7 @@ In order to create a hook, you must override a class method. The hooks currently
 - post-save: `postSave()`
 - pre-delete: `preDelete()`
 - post-delete: `postDelete()`
+- post-delete: `postFind()`
 
 Here is an example of using a hook (pre-delete, in this case):
 ```javascript
