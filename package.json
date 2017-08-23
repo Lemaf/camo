@@ -1,6 +1,6 @@
 {
   "name": "lemaf.camo",
-  "version": "0.13.3",
+  "version": "0.14.0",
   "description": "A class-based ES6 ODM for Mongo-like databases.",
   "author": {
     "name": "Scott Robinson",
