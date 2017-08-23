@@ -1,4 +1,8 @@
-## 0.13.1 (2017-06-21)
+## 0.14.0 (2017-08-17)
+Features:
+ - Added support for postFind hook
+
+## 0.13.3 (2017-06-21)
 Bugfixes:
  - Fixed issue that prevent populate if some instance has undefined references.
 
